@@ -32,8 +32,12 @@ function App() {
   />
 )}
       {pantalla === "resultado" && (
-        <Resultado puntos={puntos} setPantalla={setPantalla} />
-      )}
+  <Resultado 
+    puntos={puntos} 
+    setPantalla={setPantalla}
+    setPuntos={setPuntos}
+  />
+)}
     </>
   );
 }

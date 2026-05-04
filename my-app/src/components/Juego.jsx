@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+const categoriasNombres = {
+  "9": "General",
+  "17": "Ciencia",
+  "21": "Deportes",
+  "23": "Historia"
+};
+
 function Juego({ setPantalla, puntos, setPuntos, categoria, dificultad }) {
   const [preguntas, setPreguntas] = useState([]);
   const [indice, setIndice] = useState(0);
@@ -59,63 +66,67 @@ useEffect(() => {
     setPuntos(prev => prev + 10);
   }
 
+  // 👇 SOLO si es la última
   if (indice === preguntas.length - 1) {
     setTimeout(() => {
       setPantalla("resultado");
-    }, 1000); // delay para ver colores
+    }, 1000);
   }
 };
- const siguiente = () => {
-  if (indice + 1 < preguntas.length) {
-    setIndice(indice + 1);
-    setSeleccionada(null);
-    setMostrarRespuesta(false);
-  } else {
-    // AUTOMÁTICO
-    setTimeout(() => {
-      setPantalla("resultado");
-    }, 1000); // pequeño delay para ver colores
-  }
+const siguiente = () => {
+  setIndice(prev => prev + 1);
+  setSeleccionada(null);
+  setMostrarRespuesta(false);
 };
 
 return (
-  <div className="container">
+  <div className="container fade-screen" key={indice}>
 
-    <p>
-      <strong>Modo:</strong> {nombreCategoria} – {nombreDificultad}
-    </p>
-
-    <h2>Pregunta {indice + 1} / {preguntas.length}</h2>
-      <p dangerouslySetInnerHTML={{ __html: preguntaActual.question }} />
-
-{respuestas.map((resp, i) => {
-  let clase = "neutra";
-
-  if (mostrarRespuesta) {
-    if (resp === preguntaActual.correct_answer) {
-      clase = "correcta";
-    } else if (resp === seleccionada) {
-      clase = "incorrecta";
-    }
-  }
-
-  return (
-<button
-  className={`respuesta ${clase}`}
-  onClick={() => manejarRespuesta(resp)}
-  dangerouslySetInnerHTML={{ __html: resp }}
-/>
-  );
-})}
-
-{mostrarRespuesta && indice < preguntas.length - 1 && (
-  <button onClick={siguiente}>
-    Siguiente
-  </button>
-)}
-      <h3>Puntaje: {puntos}</h3>
+    <div className="top-bar">
+      <span>Pregunta {indice + 1} / {preguntas.length}</span>
+      <span>{puntos} pts</span>
     </div>
-  );
+
+    <div className="progress-bar">
+      <div
+        className="progress"
+        style={{ width: `${((indice + 1) / preguntas.length) * 100}%` }}
+      ></div>
+    </div>
+
+    <div className="question-card">
+      <h2 dangerouslySetInnerHTML={{ __html: preguntaActual.question }} />
+    </div>
+
+    <div className="answers">
+      {respuestas.map((resp, i) => {
+        let clase = "answer-card";
+
+        if (mostrarRespuesta) {
+          if (resp === preguntaActual.correct_answer) {
+            clase += " correcta";
+          } else if (resp === seleccionada) {
+            clase += " incorrecta";
+          }
+        }
+
+        return (
+          <div
+            key={i}
+            className={clase}
+            onClick={() => manejarRespuesta(resp)}
+            dangerouslySetInnerHTML={{ __html: resp }}
+          />
+        );
+      })}
+    </div>
+      {mostrarRespuesta && indice < preguntas.length - 1 && (
+      <button className="siguiente-btn" onClick={siguiente}>
+        Siguiente
+      </button>
+    )}
+      </div>
+);
 }
 
 export default Juego;

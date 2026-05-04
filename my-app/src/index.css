@@ -1,72 +1,214 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e5e7eb;
+}
+
+/* CONTENEDOR */
+.container {
+  max-width: 480px;
+  width: 92%;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 18px;
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* TITULOS */
+h1 {
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* TEXTO */
+p {
+  color: #cbd5f5;
+}
+.respuesta {
+  background: #334155;
   color: white;
 }
 
-.respuesta {
-  background-color: white;
-  color: black;
+label {
+  font-size: 14px;
+  color: #94a3b8;
 }
 
-.container {
-  max-width: 500px;
-  width: 95%;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.4);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+.section {
+  margin-top: 25px;
 }
 
+/* GRID */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
 
-h1 {
+/* CARD BASE */
+.card {
+  padding: 18px;
+  border-radius: 14px;
+  background: #1e293b;
+  color: #e5e7eb;
   text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+/* HOVER */
+.card:hover {
+  background: #334155;
+  transform: translateY(-3px);
+}
+
+/* ACTIVA (🔥 clave) */
+.card.active {
+  border: 1px solid #3b82f6;
+  background: #1e3a8a;
+  box-shadow: 0 0 15px rgba(59,130,246,0.5);
+}
+
+.card {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #334155;
+  border-radius: 10px;
+  overflow: hidden;
   margin-bottom: 20px;
 }
 
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 15px;
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  transition: width 0.4s ease;
 }
 
+.question-card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.question-card h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answer-card {
+  padding: 16px;
+  border-radius: 14px;
+  background: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.answer-card:hover {
+  background: #475569;
+  transform: translateY(-2px);
+}
 
 select {
   width: 100%;
-  padding: 14px;
-  margin-top: 8px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
-  font-size: 16px;
-  background: white;
-  color: black;
+  background: #1e293b;
+  color: #000000;
 }
 
+/* 👇 importante */
+select option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.options button {
+  background: #334155;
+  color: white;
+}
+
+/* 👇 ESTE ES EL BONUS */
+.options button.active {
+  background: #3b82f6;
+}
 
 button {
   width: 100%;
   padding: 14px;
-  margin-top: 15px;
+  margin-top: 12px;
   border-radius: 12px;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  background: #ffd700;
-  color: black;
-  font-weight: bold;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59,130,246,0.4);
+}
 
 .correcta {
-  background-color: #4CAF50;
+  background: #16a34a !important;
   color: white;
 }
 
 .incorrecta {
-  background-color: #f44336;
+  background: #dc2626 !important;
   color: white;
 }
 
@@ -83,4 +225,173 @@ button {
   button {
     font-size: 15px;
   }
+}
+
+.respuesta {
+  background: #334155;
+  color: white;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.respuesta:active {
+  transform: scale(0.95);
+}
+
+.respuesta:hover {
+  background: #475569;
+}
+
+.fade {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-screen {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.siguiente-btn {
+  margin-top: 20px;
+  animation: slideFadeIn 0.4s ease;
+  transition: all 0.2s ease;
+}
+
+.siguiente-btn:hover {
+  transform: translateY(-2px);
+}
+/* animación */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.correcta {
+  background-color: #16a34a;
+}
+
+.incorrecta {
+  background-color: #dc2626;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.fade-screen {
+  animation: fadeScreen 0.4s ease;
+}
+
+@keyframes fadeScreen {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.select-group {
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  background: white;
+  transition: 0.3s;
+}
+
+select:focus {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.respuesta {
+  transition: all 0.2s ease;
+}
+
+.correcta {
+  background-color: #4CAF50;
+  animation: pop 0.3s ease;
+}
+
+.incorrecta {
+  background-color: #f44336;
+  animation: shake 0.3s;
+}
+
+@keyframes pop {
+  50% { transform: scale(1.2); }
+}
+
+@keyframes shake {
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
 }
