@@ -1,7 +1,7 @@
 function Inicio({ setPantalla, setPuntos, categoria, setCategoria, dificultad, setDificultad }) {
   return (
     <div className="container fade-screen">
-      <h1>🎯 Jueguito piola para lab de computacion</h1>
+      <h1>Trivia</h1>
       <div className="section">
   <label>Categoría</label>
 

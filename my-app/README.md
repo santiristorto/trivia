@@ -1,3 +1,9 @@
+## Nota
+
+Este README contiene los detalles técnicos de la aplicación.
+
+Para instrucciones de uso, ver el README principal:
+../README.md
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

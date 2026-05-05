@@ -5,7 +5,6 @@ body {
   color: #e5e7eb;
 }
 
-/* CONTENEDOR */
 .container {
   max-width: 480px;
   width: 92%;
@@ -17,13 +16,11 @@ body {
   box-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
 
-/* TITULOS */
 h1 {
   font-weight: 600;
   margin-bottom: 25px;
 }
 
-/* TEXTO */
 p {
   color: #cbd5f5;
 }
@@ -41,7 +38,6 @@ label {
   margin-top: 25px;
 }
 
-/* GRID */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -49,7 +45,6 @@ label {
   margin-top: 10px;
 }
 
-/* CARD BASE */
 .card {
   padding: 18px;
   border-radius: 14px;
@@ -61,13 +56,11 @@ label {
   border: 1px solid transparent;
 }
 
-/* HOVER */
 .card:hover {
   background: #334155;
   transform: translateY(-3px);
 }
 
-/* ACTIVA (🔥 clave) */
 .card.active {
   border: 1px solid #3b82f6;
   background: #1e3a8a;
@@ -160,7 +153,6 @@ select {
   color: #000000;
 }
 
-/* 👇 importante */
 select option {
   background-color: #ffffff;
   color: #000000;
@@ -178,7 +170,6 @@ select option {
   color: white;
 }
 
-/* 👇 ESTE ES EL BONUS */
 .options button.active {
   background: #3b82f6;
 }
@@ -281,7 +272,6 @@ button:hover {
 .siguiente-btn:hover {
   transform: translateY(-2px);
 }
-/* animación */
 @keyframes slideFadeIn {
   from {
     opacity: 0;

@@ -7,7 +7,7 @@ const categoriasNombres = {
   "23": "Historia"
 };
 
-function Juego({ setPantalla, puntos, setPuntos, categoria, dificultad }) {
+function Juego({ setPantalla, puntos, setPuntos, categoria, dificultad,  }) {
   const [preguntas, setPreguntas] = useState([]);
   const [indice, setIndice] = useState(0);
   const [seleccionada, setSeleccionada] = useState(null);
@@ -37,7 +37,6 @@ useEffect(() => {
   fetchData();
 }, []);
 
-  //  mientras carga
   if (preguntas.length === 0) {
     return <h2>Cargando preguntas...</h2>;
   }
@@ -50,7 +49,7 @@ useEffect(() => {
   dificultad === "easy" ? "Fácil" :
   dificultad === "medium" ? "Media" :
   "Difícil";
-  // mezclar respuestas
+
   const respuestas = [
     ...preguntaActual.incorrect_answers,
     preguntaActual.correct_answer,
@@ -66,7 +65,6 @@ useEffect(() => {
     setPuntos(prev => prev + 10);
   }
 
-  // 👇 SOLO si es la última
   if (indice === preguntas.length - 1) {
     setTimeout(() => {
       setPantalla("resultado");
