@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import {
+  encenderVerde,
+  encenderRojo,
+  apagarTodo
+} from "../services/digispark";
 
 const categoriasNombres = {
   "9": "General",
@@ -55,7 +60,7 @@ useEffect(() => {
     preguntaActual.correct_answer,
   ].sort(() => Math.random() - 0.5);
 
- const manejarRespuesta = (resp) => {
+const manejarRespuesta = (resp) => {
   if (mostrarRespuesta) return;
 
   setSeleccionada(resp);
@@ -63,6 +68,10 @@ useEffect(() => {
 
   if (resp === preguntaActual.correct_answer) {
     setPuntos(prev => prev + 10);
+
+    encenderVerde(); 
+  } else {
+    encenderRojo(); 
   }
 
   if (indice === preguntas.length - 1) {
@@ -72,6 +81,9 @@ useEffect(() => {
   }
 };
 const siguiente = () => {
+
+  apagarTodo(); 
+
   setIndice(prev => prev + 1);
   setSeleccionada(null);
   setMostrarRespuesta(false);

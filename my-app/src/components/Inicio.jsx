@@ -1,4 +1,6 @@
+import { conectarDigispark } from "../services/digispark";
 function Inicio({ setPantalla, setPuntos, categoria, setCategoria, dificultad, setDificultad }) {
+  const [conectado, setConectado] = useState(false);
   return (
     <div className="container fade-screen">
       <h1>Trivia</h1>
@@ -68,7 +70,14 @@ function Inicio({ setPantalla, setPuntos, categoria, setCategoria, dificultad, s
     </div>
   </div>
 </div>
-
+      <button
+  onClick={async () => {
+    const ok = await conectarDigispark();
+    setConectado(ok);
+  }}
+>
+  {conectado ? "✅ Conectado" : "🔌 Conectar Digispark"}
+</button>
       <button onClick={() => {
         setPuntos(0);
         setPantalla("juego");
