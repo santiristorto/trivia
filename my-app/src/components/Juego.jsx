@@ -40,7 +40,7 @@ useEffect(() => {
   };
 
   fetchData();
-}, []);
+}, [categoria, dificultad]);
 
   if (preguntas.length === 0) {
     return <h2>Cargando preguntas...</h2>;
@@ -49,11 +49,13 @@ useEffect(() => {
   const preguntaActual = preguntas[indice];
   const nombreCategoria = categoria === "" ? "Todas las categorías" : categoriasNombres[categoria];
 
-  const nombreDificultad = 
-  dificultad === "" ? "Libre" :
-  dificultad === "easy" ? "Fácil" :
-  dificultad === "medium" ? "Media" :
-  "Difícil";
+const dificultadesNombres = {
+  "": "Libre",
+  easy: "Fácil",
+  medium: "Media",
+  hard: "Difícil",
+};
+const nombreDificultad = dificultadesNombres[dificultad];
 
   const respuestas = [
     ...preguntaActual.incorrect_answers,
@@ -122,7 +124,7 @@ return (
 
         return (
           <div
-            key={i}
+            key={resp}
             className={clase}
             onClick={() => manejarRespuesta(resp)}
             dangerouslySetInnerHTML={{ __html: resp }}

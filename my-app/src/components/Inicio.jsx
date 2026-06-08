@@ -1,74 +1,52 @@
+import {useState} from "react";
 import { conectarDigispark } from "../services/digispark";
 function Inicio({ setPantalla, setPuntos, categoria, setCategoria, dificultad, setDificultad }) {
   const [conectado, setConectado] = useState(false);
+  const categorias = [
+  { valor: "", nombre: "Todas" },
+  { valor: "9", nombre: "General" },
+  { valor: "17", nombre: "Ciencia" },
+  { valor: "21", nombre: "Deportes" },
+];
+const dificultades = [
+  { valor: "", nombre: "Libre" },
+  { valor: "easy", nombre: "Fácil" },
+  { valor: "medium", nombre: "Media" },
+  { valor: "hard", nombre: "Difícil" },
+];
+
   return (
     <div className="container fade-screen">
       <h1>Trivia</h1>
       <div className="section">
   <label>Categoría</label>
 
-  <div className="card-grid">
+<div className="card-grid">
+  {categorias.map((cat) => (
     <div
-      className={`card ${categoria === "" ? "active" : ""}`}
-      onClick={() => setCategoria("")}
+      key={cat.valor}
+      className={`card ${categoria === cat.valor ? "active" : ""}`}
+      onClick={() => setCategoria(cat.valor)}
     >
-      Todas
+      {cat.nombre}
     </div>
-
-    <div
-      className={`card ${categoria === "9" ? "active" : ""}`}
-      onClick={() => setCategoria("9")}
-    >
-      General
-    </div>
-
-    <div
-      className={`card ${categoria === "17" ? "active" : ""}`}
-      onClick={() => setCategoria("17")}
-    >
-      Ciencia
-    </div>
-
-    <div
-      className={`card ${categoria === "21" ? "active" : ""}`}
-      onClick={() => setCategoria("21")}
-    >
-      Deportes
-    </div>
-  </div>
+  ))}
+</div>
 </div>
       <div className="section">
   <label>Dificultad</label>
 
   <div className="card-grid">
+  {dificultades.map((dif) => (
     <div
-      className={`card ${dificultad === "" ? "active" : ""}`}
-      onClick={() => setDificultad("")}
+      key={dif.valor}
+      className={`card ${dificultad === dif.valor ? "active" : ""}`}
+      onClick={() => setDificultad(dif.valor)}
     >
-      Libre
+      {dif.nombre}
     </div>
-
-    <div
-      className={`card ${dificultad === "easy" ? "active" : ""}`}
-      onClick={() => setDificultad("easy")}
-    >
-      Fácil
-    </div>
-
-    <div
-      className={`card ${dificultad === "medium" ? "active" : ""}`}
-      onClick={() => setDificultad("medium")}
-    >
-      Media
-    </div>
-
-    <div
-      className={`card ${dificultad === "hard" ? "active" : ""}`}
-      onClick={() => setDificultad("hard")}
-    >
-      Difícil
-    </div>
-  </div>
+  ))}
+</div>
 </div>
       <button
   onClick={async () => {
