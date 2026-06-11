@@ -47,7 +47,5 @@ La alimentación del sistema se realiza mediante el puerto USB integrado del Dig
 
 Los pines utilizados son:
 
-PB0 → LED Verde 1
-PB1 → LED Verde 2
-PB2 → LED Rojo 1
-PB3 → LED Rojo 2 
+PB0 → LED Verde 1 y 2
+PB1 → LED Rojo 1 y 2
